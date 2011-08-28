@@ -1,9 +1,3 @@
-Instance Providers Library
+Notes
 
-This library is intented for developers to abstract multiple sources from which an object can come from:
-
--Default Constructor
--Mock
--Locate (mef, unity, autofac, funq, etc)
-
-Please look at the unit tests for examples on how to declare and consume sources.
+Unit tests & documentation still need to be added.
