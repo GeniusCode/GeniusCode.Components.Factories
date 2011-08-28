@@ -42,10 +42,10 @@
   <ItemGroup>
     <Compile Include="IAbstractFactory.cs" />
     <Compile Include="IAbstractFactoryExtensions.cs" />
-    <Compile Include="Stateful\IStateful.cs" />
-    <Compile Include="Stateful\StatefulBase.cs" />
-    <Compile Include="Stateful\StatefulAbstractFactory.cs" />
-    <Compile Include="Support\FactoryOutput.cs" />
+    <Compile Include="Factories\Stateful\IStatefulObject.cs" />
+    <Compile Include="Factories\Stateful\StatefulObjectBase.cs" />
+    <Compile Include="Factories\Stateful\StatefulAbstractFactory.cs" />
+    <Compile Include="Factories\Support\FactoryOutput.cs" />
     <Compile Include="BindableAbstractFactory.cs" />
     <Compile Include="IAcquireResult.cs" />
     <Compile Include="IFactory.cs" />
@@ -53,13 +53,11 @@
     <Compile Include="Factories\FactoryBase.cs" />
     <Compile Include="Factories\FactoryBaseTArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Support\LazyRelayObjectSource.cs" />
-    <Compile Include="Support\RelayObjectSource.cs" />
+    <Compile Include="Factories\Support\LazyRelayObjectSource.cs" />
+    <Compile Include="Factories\Support\RelayObjectSource.cs" />
     <Compile Include="AbstractFactory.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,44 +1,40 @@
-using System;
-
-namespace GeniusCode.FactoryModel.ProviderModel.Stateful
+namespace GeniusCode.Components.Factories.Stateful
 {
-    public class StatefulBase<TState> : IStateful<TState>
+    public class StatefulObjectBase<TState> : IStatefulObject<TState>
     {
-        protected virtual void OnStateSet()
-        { }
+        private TState _state;
 
-        private TState _State;
         protected TState State
         {
-            get
-            {
-                return _State;
-            }
+            get { return _state; }
             private set
             {
-                _State = value;
+                _state = value;
                 OnStateSet();
             }
         }
 
         #region Impementations
 
-        TState IStateful<TState>.State
+        TState IStatefulObject<TState>.State
         {
-            get
-            {
-                return this.State;
-            }
+            get { return State; }
         }
-        bool IStateful<TState>.TrySetState(TState state)
+
+        bool IStatefulObject<TState>.TrySetState(TState state)
         {
             return TrySetState(state);
         }
+
         #endregion
+
+        protected virtual void OnStateSet()
+        {
+        }
 
         protected virtual bool TrySetState(TState state)
         {
-            this.State = state;
+            State = state;
             return true;
         }
     }

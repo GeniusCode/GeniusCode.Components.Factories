@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System;
-//GeniusCode.Composition.ProviderModel
-namespace GeniusCode.FactoryModel
-{
 
-    public class BindableAbstractFactory<T> : BindableAbstractFactory<T,object>
+namespace GeniusCode.Components
+{
+    public class BindableAbstractFactory<T> : BindableAbstractFactory<T, object>
         where T : class
     {
         public BindableAbstractFactory(IEnumerable<IFactory<T>> providers = null)
@@ -22,17 +20,14 @@ namespace GeniusCode.FactoryModel
         {
         }
 
+        public T Source
+        {
+            get { return ReturnValueForSourceRequest(GetArgs()); }
+        }
+
         protected virtual TArgs GetArgs()
         {
             return new TArgs();
-        }
-
-        public T Source
-        {
-            get
-            {
-                return ReturnValueForSourceRequest(GetArgs());
-            }
         }
 
         protected virtual T ReturnValueForSourceRequest(TArgs args)

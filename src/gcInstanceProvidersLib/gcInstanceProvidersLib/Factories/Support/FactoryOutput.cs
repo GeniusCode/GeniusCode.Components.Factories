@@ -1,34 +1,16 @@
-using System;
+using GeniusCode.Components;
 
-namespace GeniusCode.FactoryModel
+namespace GeniusCode.Factory.ProviderModel.Support
 {
-    internal class FactoryOutput<T, R> : IFactoryOutput<T, R>
+    internal class FactoryOutput<T, TResult> : IFactoryOutput<T, TResult>
         where T : class
-        where R : class, T
+        where TResult : class, T
     {
-
-        public static IFactoryOutput<T,R> NewSuccessfulInstance(R result, bool considerResultCached, IFactory<T> sourceUsed)
-        {
-            return new FactoryOutput<T,R>(result,true,considerResultCached,sourceUsed);
-        }
-
-        public static IFactoryOutput<T, R> NewFailureInstance()
-        {
-            R instance = default(R);
-            IFactory<T> sourceUsed = null;
-            return NewFailureInstance(instance, sourceUsed);
-        }
-
-        public static IFactoryOutput<T, R> NewFailureInstance(R result, IFactory<T> sourceUsed)
-        {
-            return new FactoryOutput<T, R>(result, false, false, sourceUsed);
-        }
-
-        public FactoryOutput(R result, bool resultSuccessfull, bool considerResultCached,  IFactory<T> sourceUsed)
+        public FactoryOutput(TResult result, bool resultSuccessfull, bool considerResultCached, IFactory<T> sourceUsed)
         {
             if (sourceUsed == null)
             {
-                Result = default(R);
+                Result = default(TResult);
                 return;
             }
 
@@ -38,12 +20,32 @@ namespace GeniusCode.FactoryModel
             ConsiderResultCached = considerResultCached;
         }
 
+        #region IFactoryOutput<T,TResult> Members
+
         public IFactory<T> FactoryUsed { get; private set; }
 
-        public R Result { get; private set; }
+        public TResult Result { get; private set; }
 
         public bool ConsiderResultCached { get; private set; }
 
         public bool ResultSuccessful { get; private set; }
+
+        #endregion
+
+        public static IFactoryOutput<T, TResult> NewSuccessfulInstance(TResult result, bool considerResultCached,
+                                                                       IFactory<T> sourceUsed)
+        {
+            return new FactoryOutput<T, TResult>(result, true, considerResultCached, sourceUsed);
+        }
+
+        public static IFactoryOutput<T, TResult> NewFailureInstance()
+        {
+            return NewFailureInstance(null, null);
+        }
+
+        public static IFactoryOutput<T, TResult> NewFailureInstance(TResult result, IFactory<T> sourceUsed)
+        {
+            return new FactoryOutput<T, TResult>(result, false, false, sourceUsed);
+        }
     }
 }

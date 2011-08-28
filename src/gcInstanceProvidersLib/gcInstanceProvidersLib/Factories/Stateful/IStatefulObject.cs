@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-namespace GeniusCode.FactoryModel.ProviderModel.Stateful
+﻿namespace GeniusCode.Components.Factories.Stateful
 {
-    public interface IStateful<TState>
+    public interface IStatefulObject<TState>
     {
         TState State { get; }
         bool TrySetState(TState args);
     }
-
 }

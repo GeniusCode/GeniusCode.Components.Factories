@@ -1,39 +1,35 @@
 using System;
 
-namespace GeniusCode.FactoryModel
+namespace GeniusCode.Factory.ProviderModel.Support
 {
-
-
-
-
     /// <summary>
     /// Class that duplicates the behavior of Lazy in .net 4
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class LazyRelayObjectSource<T> : RelayObjectSource<T>
     {
+        private bool _hasValue;
 
-        public static implicit operator T(LazyRelayObjectSource<T> input)
-        {
-            return input.Value;
-        }
-
-        bool hasValue;
+        private T _value;
 
         public LazyRelayObjectSource(Func<T> factory)
             : base(factory)
         {
         }
 
-        private T _Value;
+        public static implicit operator T(LazyRelayObjectSource<T> input)
+        {
+            return input.Value;
+        }
+
         protected override T GetReturnValueForSource()
         {
-            if (!hasValue)
+            if (!_hasValue)
             {
-                _Value = _Factory();
-                hasValue = true;
+                _value = Factory();
+                _hasValue = true;
             }
-            return _Value;
+            return _value;
         }
     }
 
@@ -46,8 +42,6 @@ namespace GeniusCode.FactoryModel
     public class LazyRelayObjectSource<T, TMetadata> : LazyRelayObjectSource<T>
         where TMetadata : class
     {
-
-
         public LazyRelayObjectSource(Func<T> factory, TMetadata metadata)
             : base(factory)
         {
@@ -55,7 +49,5 @@ namespace GeniusCode.FactoryModel
         }
 
         public TMetadata Metadata { get; private set; }
-
     }
-
 }

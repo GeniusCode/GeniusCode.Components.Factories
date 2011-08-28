@@ -1,16 +1,23 @@
-using System;
-
-namespace GeniusCode.FactoryModel.Factories
+namespace GeniusCode.Components.Factories
 {
-    public abstract class FactoryBase<T, TArgs> : FactoryBase<T>, IFactory<T,TArgs>
+    public abstract class FactoryBase<T, TArgs> : FactoryBase<T>, IFactory<T, TArgs>
         where T : class
         where TArgs : class
     {
+        #region IFactory<T,TArgs> Members
 
-        protected abstract bool TryBuildWithStrongArgs<R>(out bool wasCached, TArgs args, out R result) where R : class, T;
+        public IFactoryOutput<T, R> GetInstance<R>(TArgs args) where R : class, T
+        {
+            return GetResult<R>(args);
+        }
+
+        #endregion
+
+        protected abstract bool TryBuildWithStrongArgs<TResult>(out bool wasCached, TArgs args, out TResult result)
+            where TResult : class, T;
 
 
-        protected sealed override bool TryBuild<R>(out bool wasCached, object args, out R result)
+        protected override sealed bool TryBuild<TResult>(out bool wasCached, object args, out TResult result)
         {
             var stronglyTypedArgs = args as TArgs;
             bool argsAreSupported = (args == null || stronglyTypedArgs != null);
@@ -23,11 +30,6 @@ namespace GeniusCode.FactoryModel.Factories
             }
 
             return TryBuildWithStrongArgs(out wasCached, stronglyTypedArgs, out result);
-        }
-
-        public IFactoryOutput<T, R> GetInstance<R>(TArgs args) where R : class, T
-        {
-            return GetResult<R>(args);
         }
     }
 }

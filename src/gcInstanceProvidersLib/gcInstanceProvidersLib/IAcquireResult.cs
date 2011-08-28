@@ -1,24 +1,17 @@
-using System;
-
-namespace GeniusCode.FactoryModel
+namespace GeniusCode.Components
 {
-
-    public interface IAcquireResult<R>
-        where R : class
+    public interface IAcquireResult<out TResult>
+        where TResult : class
     {
-        R Result { get; }
+        TResult Result { get; }
         bool ConsiderResultCached { get; }
         bool ResultSuccessful { get; }
     }
 
-    public interface IFactoryOutput<T, R> : IAcquireResult<R>
+    public interface IFactoryOutput<T, TResult> : IAcquireResult<TResult>
         where T : class
-        where R : class, T
+        where TResult : class, T
     {
         IFactory<T> FactoryUsed { get; }
     }
-
-
-
-
 }

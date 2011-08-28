@@ -1,17 +1,16 @@
 using System;
+using System.Reflection;
 
-namespace GeniusCode.FactoryModel.Factories
+namespace GeniusCode.Components.Factories
 {
-
     public class DefaultConstructorFactory<T> : FactoryBase<T> where T : class
     {
-
         protected override bool TryBuild<R>(out bool wasCached, object args, out R result)
         {
             result = null;
             wasCached = false;
 
-            if (TypeHasDefaultConstructor(typeof(R)))
+            if (TypeHasDefaultConstructor(typeof (R)))
             {
                 result = Activator.CreateInstance<R>();
                 return true;
@@ -24,13 +23,12 @@ namespace GeniusCode.FactoryModel.Factories
             if (type.IsValueType)
                 return true;
 
-            var constructor = type.GetConstructor(Type.EmptyTypes);
+            ConstructorInfo constructor = type.GetConstructor(Type.EmptyTypes);
 
             if (constructor == null)
                 return false;
 
             return true;
         }
-
     }
 }

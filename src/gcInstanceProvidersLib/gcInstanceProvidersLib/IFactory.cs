@@ -1,20 +1,15 @@
-using System;
-
-namespace GeniusCode.FactoryModel
+namespace GeniusCode.Components
 {
     public interface IFactory<T>
         where T : class
     {
-        IFactoryOutput<T, R> GetInstance<R>(object args = null) where R : class, T;       
+        IFactoryOutput<T, TResult> GetInstance<TResult>(object args = null) where TResult : class, T;
     }
 
-    public interface IFactory<T, TArgs> : IFactory<T>
+    public interface IFactory<T, in TArgs> : IFactory<T>
         where T : class
         where TArgs : class
     {
-        IFactoryOutput<T, R> GetInstance<R>(TArgs args) where R : class, T;
+        IFactoryOutput<T, TResult> GetInstance<TResult>(TArgs args) where TResult : class, T;
     }
-
-
-
 }

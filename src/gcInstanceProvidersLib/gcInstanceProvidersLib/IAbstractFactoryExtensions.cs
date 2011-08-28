@@ -1,14 +1,12 @@
-using System;
-
-namespace GeniusCode.FactoryModel
+namespace GeniusCode.Components
 {
-    public static class IAbstractFactoryExtensions
+    public static class AbstractFactoryExtensions
     {
-        public static R GetInstance<R, T>(this IAbstractFactory<T> input)
+        public static TResult GetInstance<TResult, T>(this IAbstractFactory<T> input)
             where T : class
-            where R : class, T
+            where TResult : class, T
         {
-            return input.GetInstance<R>(null);
+            return input.GetInstance<TResult>(null);
         }
 
         public static T GetInstance<T>(this IAbstractFactory<T> input)

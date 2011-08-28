@@ -1,12 +1,11 @@
-using System;
-
-namespace GeniusCode.FactoryModel
+namespace GeniusCode.Components
 {
     public interface IAbstractFactory<T>
-                where T : class
+        where T : class
     {
         T GetInstance(object args);
-        R GetInstance<R>(object args)
-                where R : class, T;
+
+        TResult GetInstance<TResult>(object args)
+            where TResult : class, T;
     }
 }

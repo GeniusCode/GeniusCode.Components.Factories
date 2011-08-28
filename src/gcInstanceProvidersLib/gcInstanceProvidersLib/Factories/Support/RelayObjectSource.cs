@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
-namespace GeniusCode.FactoryModel
+
+namespace GeniusCode.Factory.ProviderModel.Support
 {
     /// <summary>
     /// Represents a source for a value or object instance of a particular type.
@@ -8,27 +9,16 @@ namespace GeniusCode.FactoryModel
     /// <typeparam name="T"></typeparam>
     public abstract class RelayObjectSource<T> : INotifyPropertyChanged
     {
-        internal Func<T> _Factory { get; private set; }
-
-
-
         /// <summary>
         /// Creates an instance of the class by specifying a func.
         /// </summary>
         /// <param name="factory">The factory.</param>
-        public RelayObjectSource(Func<T> factory)
+        protected RelayObjectSource(Func<T> factory)
         {
-            _Factory = factory;
+            Factory = factory;
         }
 
-        /// <summary>
-        /// Gets the value to return when the Value property is being accessed
-        /// </summary>
-        /// <returns></returns>
-        protected virtual T GetReturnValueForSource()
-        {
-            return _Factory();
-        }
+        internal Func<T> Factory { get; private set; }
 
 
         /// <summary>
@@ -37,12 +27,23 @@ namespace GeniusCode.FactoryModel
         /// <value>The value.</value>
         public T Value
         {
-            get
-            {
-                return GetReturnValueForSource();
-            }
+            get { return GetReturnValueForSource(); }
         }
 
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        /// <summary>
+        /// Gets the value to return when the Value property is being accessed
+        /// </summary>
+        /// <returns></returns>
+        protected virtual T GetReturnValueForSource()
+        {
+            return Factory();
+        }
 
         /// <summary>
         /// Raises the notify property changed event for the Value property
@@ -52,8 +53,5 @@ namespace GeniusCode.FactoryModel
             if (PropertyChanged != null)
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Value"));
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
     }
 }
