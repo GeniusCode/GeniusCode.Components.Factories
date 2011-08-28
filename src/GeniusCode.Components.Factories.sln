@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gcFactories", "gcInstanceProvidersLib\gcFactories.csproj", "{57087918-D593-4072-8F24-B333B51B05B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gcFactories", "gcFactories\gcFactories.csproj", "{57087918-D593-4072-8F24-B333B51B05B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gcInstanceProvdersLib.Tests", "gcInstanceProvdersLib.Tests\gcInstanceProvdersLib.Tests.csproj", "{886601EE-9151-42B4-AF3A-B28FDF72AD28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gcInstanceProvdersLib.Tests", "gcFactories.Tests\gcInstanceProvdersLib.Tests.csproj", "{886601EE-9151-42B4-AF3A-B28FDF72AD28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6E4C6987-955B-4956-BAA4-7CFF91F7B5F4}"
 	ProjectSection(SolutionItems) = preProject
