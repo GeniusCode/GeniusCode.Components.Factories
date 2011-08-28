@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>gcFactories</id>
+    <version>1.0</version>
+    <title>GeniusCode.Components.Factories</title>
+    <authors>JeremiahRedekop,Ryan D Hatch</authors>
+    <owners>GeniusCode,LLC</owners>
+    <projectUrl>https://github.com/GeniusCode/GeniusCode.Components.Factories</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Blend of IOC, DI, and Factory Pattern</description>
+    <summary>Blend of IOC, DI, and Factory Pattern</summary>
+    <tags>IOC, Factory, DI</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="src\gcFactories\bin\Release\gcFactories.dll" target="lib\net35\
+	gcFactories" />
+  </files>
+</package>
