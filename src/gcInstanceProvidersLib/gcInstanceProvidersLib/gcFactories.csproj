@@ -8,7 +8,7 @@
     <ProjectGuid>{57087918-D593-4072-8F24-B333B51B05B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeniusCode.Factory.ProviderModel</RootNamespace>
+    <RootNamespace>GeniusCode.Components</RootNamespace>
     <AssemblyName>gcFactoryProviderModel</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,7 +45,7 @@
     <Compile Include="Stateful\IStateful.cs" />
     <Compile Include="Stateful\StatefulBase.cs" />
     <Compile Include="Stateful\StatefulAbstractFactory.cs" />
-    <Compile Include="Support\AcquireResultImpl.cs" />
+    <Compile Include="Support\FactoryOutput.cs" />
     <Compile Include="BindableAbstractFactory.cs" />
     <Compile Include="IAcquireResult.cs" />
     <Compile Include="IFactory.cs" />
