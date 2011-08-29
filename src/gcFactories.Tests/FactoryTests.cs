@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GeniusCode.Components.Factories.Tests
 {
@@ -12,10 +13,10 @@ namespace GeniusCode.Components.Factories.Tests
         [TestMethod]
         public void Should_create_instance_with_default_counstructor_factory()
         {
-            var f = new DefaultConstructorFactory<Person>();
+            var factories = new List<IFactory<Person>>();
+            factories.AddNewDefaultConstructorFactory();
 
-
-            var af = new AbstractFactory<Person>(f);
+            var af = new AbstractFactory<Person>(factories);
 
             var person = af.GetInstance();
 
