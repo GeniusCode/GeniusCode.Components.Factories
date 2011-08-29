@@ -43,6 +43,7 @@
     <Compile Include="Factories\DepedencyInjection\DependantBase.cs" />
     <Compile Include="Factories\DepedencyInjection\DIAbstractFactory.cs" />
     <Compile Include="Factories\DepedencyInjection\IDependant.cs" />
+    <Compile Include="FactoryExtensions.cs" />
     <Compile Include="IAbstractFactory.cs" />
     <Compile Include="IAbstractFactoryExtensions.cs" />
     <Compile Include="Factories\Support\FactoryOutput.cs" />

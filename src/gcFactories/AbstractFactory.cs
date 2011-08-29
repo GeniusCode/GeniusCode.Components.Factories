@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GeniusCode.Components.Factories.Support;
 using GeniusCode.Factory.ProviderModel.Support;
 
 namespace GeniusCode.Components
@@ -16,7 +17,7 @@ namespace GeniusCode.Components
 
         #region Constuctors
 
-        public AbstractFactory(params IFactory<T>[] providers)
+        public AbstractFactory(IEnumerable<IFactory<T>> providers)
         {
             _factoriesFunc = new LazyRelayObjectSource<List<IFactory<T>>>(() => CreateFactoryList(providers));
         }

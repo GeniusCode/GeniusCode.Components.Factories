@@ -1,6 +1,4 @@
-using GeniusCode.Components;
-
-namespace GeniusCode.Factory.ProviderModel.Support
+namespace GeniusCode.Components.Factories.Support
 {
     internal class FactoryOutput<T, TResult> : IFactoryOutput<T, TResult>
         where T : class

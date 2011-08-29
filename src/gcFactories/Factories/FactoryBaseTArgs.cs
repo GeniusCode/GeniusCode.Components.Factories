@@ -20,7 +20,7 @@ namespace GeniusCode.Components.Factories
         protected override sealed bool TryBuild<TResult>(out bool wasCached, object args, out TResult result)
         {
             var stronglyTypedArgs = args as TArgs;
-            bool argsAreSupported = (args == null || stronglyTypedArgs != null);
+            var argsAreSupported = (args == null || stronglyTypedArgs != null);
 
             if (!argsAreSupported)
             {

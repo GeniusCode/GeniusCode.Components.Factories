@@ -1,3 +1,4 @@
+using GeniusCode.Components.Factories.Support;
 using GeniusCode.Factory.ProviderModel.Support;
 
 namespace GeniusCode.Components.Factories
@@ -22,12 +23,12 @@ namespace GeniusCode.Components.Factories
             bool wasCached;
             TResult output;
 
-            bool success = TryBuild(out wasCached, args, out output);
+            var success = TryBuild(out wasCached, args, out output);
 
             if (success)
                 return FactoryOutput<T, TResult>.NewSuccessfulInstance(output, wasCached, this);
-            else
-                return FactoryOutput<T, TResult>.NewFailureInstance(output, this);
+            
+            return FactoryOutput<T, TResult>.NewFailureInstance(output, this);
         }
     }
 }

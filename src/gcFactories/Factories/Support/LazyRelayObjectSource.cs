@@ -1,12 +1,13 @@
 using System;
+using GeniusCode.Factory.ProviderModel.Support;
 
-namespace GeniusCode.Factory.ProviderModel.Support
+namespace GeniusCode.Components.Factories.Support
 {
     /// <summary>
     /// Class that duplicates the behavior of Lazy in .net 4
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LazyRelayObjectSource<T> : RelayObjectSource<T>
+    internal class LazyRelayObjectSource<T> : RelayObjectSource<T>
     {
         private bool _hasValue;
 
@@ -39,7 +40,7 @@ namespace GeniusCode.Factory.ProviderModel.Support
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TMetadata">The type of the metadata.</typeparam>
-    public class LazyRelayObjectSource<T, TMetadata> : LazyRelayObjectSource<T>
+    internal class LazyRelayObjectSource<T, TMetadata> : LazyRelayObjectSource<T>
         where TMetadata : class
     {
         public LazyRelayObjectSource(Func<T> factory, TMetadata metadata)
