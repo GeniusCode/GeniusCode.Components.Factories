@@ -1,3 +1,6 @@
 /_ReSharper.gcInstanceProvidersLib/
 /_ReSharper.GeniusCode.Components.Factories/
 /TestResults/
+/*.sln.docstates.suo
+/*.suo
+/*.ReSharper.user

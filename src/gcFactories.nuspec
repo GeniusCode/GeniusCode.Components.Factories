@@ -14,6 +14,6 @@
   </metadata>
   <files>
     <file src="src\gcFactories\bin\Release\gcFactories.dll" target="lib\net35" />
-	<file src="src\gcFactories.MEF\bin\Release\gcFactories.MEF.dll" target="lib\net40" />
+	<file src="src\gcFactories.MEF\bin\Release\gcFactoriesMEF.dll" target="lib\net40" />
   </files>
 </package>
