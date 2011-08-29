@@ -17,17 +17,17 @@ namespace GeniusCode.Components.Factories
         protected abstract bool TryBuild<TResult>(out bool wasCached, object args, out TResult result)
             where TResult : class, T;
 
-        internal IFactoryOutput<T, R> GetResult<R>(object args = null) where R : class, T
+        internal IFactoryOutput<T, TResult> GetResult<TResult>(object args = null) where TResult : class, T
         {
             bool wasCached;
-            R output;
+            TResult output;
 
             bool success = TryBuild(out wasCached, args, out output);
 
             if (success)
-                return FactoryOutput<T, R>.NewSuccessfulInstance(output, wasCached, this);
+                return FactoryOutput<T, TResult>.NewSuccessfulInstance(output, wasCached, this);
             else
-                return FactoryOutput<T, R>.NewFailureInstance(output, this);
+                return FactoryOutput<T, TResult>.NewFailureInstance(output, this);
         }
     }
 }
