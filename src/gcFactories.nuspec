@@ -10,9 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Blend of IOC, DI, and Factory Pattern</description>
     <summary>Blend of IOC, DI, and Factory Pattern</summary>
-    <tags>IOC, Factory, DI</tags>
-    <dependencies>
-    </dependencies>
+    <tags>IOC Factory DI</tags>
   </metadata>
   <files>
     <file src="src\gcFactories\bin\Release\gcFactories.dll" target="lib\net35\
