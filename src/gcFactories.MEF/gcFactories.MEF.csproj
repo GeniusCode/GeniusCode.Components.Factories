@@ -41,9 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MefFactoryExtensions.cs" />
     <Compile Include="MefInstanceProvider.cs" />
-    <Compile Include="IMefExportPlaceHolder.cs" />
-    <Compile Include="Logic.cs" />
+    <Compile Include="Support\IMefExportPlaceHolder.cs" />
+    <Compile Include="Support\Logic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,9 +53,7 @@
       <Name>gcFactories</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

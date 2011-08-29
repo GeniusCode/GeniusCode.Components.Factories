@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
-using GeniusCode.Framework.Composition.Sources;
 
-namespace GeniusCode.Components
+namespace GeniusCode.Components.Support
 {
     internal class Logic<TMefContract, TMetadata>
         where TMetadata : class
