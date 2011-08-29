@@ -1,13 +1,25 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace gcInstanceProvdersLib.Tests
+namespace GeniusCode.Components.Factories.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class FactoryTests
     {
-        [TestMethod]
-        public void TestMethod1()
+        public class Person
         {
+        }
+
+        [TestMethod]
+        public void Should_create_instance_with_default_counstructor_factory()
+        {
+            var f = new DefaultConstructorFactory<Person>();
+
+
+            var af = new AbstractFactory<Person>(f);
+
+            var person = af.GetInstance();
+
+            Assert.IsNotNull(person);
         }
     }
 }

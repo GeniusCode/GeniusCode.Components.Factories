@@ -5,7 +5,7 @@ namespace GeniusCode.Components
     public class BindableAbstractFactory<T> : BindableAbstractFactory<T, object>
         where T : class
     {
-        public BindableAbstractFactory(IEnumerable<IFactory<T>> providers = null)
+        public BindableAbstractFactory(params IFactory<T>[] providers)
             : base(providers)
         {
         }
@@ -15,7 +15,7 @@ namespace GeniusCode.Components
         where T : class
         where TArgs : class, new()
     {
-        public BindableAbstractFactory(IEnumerable<IFactory<T>> providers = null)
+        public BindableAbstractFactory(params IFactory<T>[] providers)
             : base(providers)
         {
         }

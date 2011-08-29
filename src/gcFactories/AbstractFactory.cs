@@ -16,7 +16,7 @@ namespace GeniusCode.Components
 
         #region Constuctors
 
-        public AbstractFactory(IEnumerable<IFactory<T>> providers = null)
+        public AbstractFactory(params IFactory<T>[] providers)
         {
             _factoriesFunc = new LazyRelayObjectSource<List<IFactory<T>>>(() => CreateFactoryList(providers));
         }
