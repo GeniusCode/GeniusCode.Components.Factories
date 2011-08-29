@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using GeniusCode.Components.Factories;
+using GeniusCode.Components.Support;
 
 namespace GeniusCode.Components
 {

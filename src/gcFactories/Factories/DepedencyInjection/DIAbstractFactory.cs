@@ -1,10 +1,15 @@
 using System;
+using System.Collections.Generic;
 
 namespace GeniusCode.Components.Factories.DepedencyInjection
 {
     public class DIAbstractFactory<TDependency, T> : AbstractFactory<T>
         where T : class, IDependant<TDependency>
     {
+        public DIAbstractFactory(IEnumerable<IFactory<T>> providers) : base(providers)
+        {
+        }
+
         protected TResult GetInstance<TResult>(object args, TDependency dependency)
             where TResult : class, T
         {
