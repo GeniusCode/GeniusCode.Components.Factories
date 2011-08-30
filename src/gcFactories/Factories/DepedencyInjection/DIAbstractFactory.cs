@@ -20,7 +20,7 @@ namespace GeniusCode.Components.Factories.DepedencyInjection
             var wasSuccessful = output.TrySetDependency(dependency);
 
             if (!wasSuccessful)
-                throw new Exception("Depedency was not set as expected");
+                throw new Exception("Dependency was not set as expected");
 
             return output;
         }
