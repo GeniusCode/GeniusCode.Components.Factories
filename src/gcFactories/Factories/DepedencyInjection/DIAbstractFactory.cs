@@ -10,6 +10,9 @@ namespace GeniusCode.Components.Factories.DepedencyInjection
         {
         }
 
+        //TODO: Refactor this method to support multiple dependencies, when TResult implements
+        // IDependent.
+        // Then enforece that all dependencies were supplied as expected...
         protected TResult GetInstance<TResult>(object args, TDependency dependency)
             where TResult : class, T
         {
