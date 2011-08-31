@@ -6,21 +6,28 @@ namespace GeniusCode.Components
 {
     public static class FactoryExtensions
     {
-        public static void AddNewDefaultConstructorFactory<T>(this IList<IFactory<T>> input) where T : class, new()
+
+        /// <summary>
+        /// Adds the new default constructor factory.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="input">The input.</param>
+        /// <remarks>This does not require a parameterless constructor on type T</remarks>
+        public static void AddNewDefaultConstructorFactory<T>(this IList<IFactory<T>> input) where T : class //,new() <-- NO!
         {
             input.Add(new DefaultConstructorFactory<T>());
         }
 
-        public  static IAbstractFactory<T> ToAbstractFactory<T>(this IEnumerable<IFactory<T>> input) where T: class
+        public static IAbstractFactory<T> ToAbstractFactory<T>(this IEnumerable<IFactory<T>> input) where T : class
         {
             return new AbstractFactory<T>(input);
         }
 
-        public static DIAbstractFactory<TDependency,T> ToDIAbstractFactory<T, TDependency>(this IEnumerable<IFactory<T>> input) 
+        public static DIAbstractFactory<TDependency, T> ToDIAbstractFactory<T, TDependency>(this IEnumerable<IFactory<T>> input)
             where T : class, IDependant<TDependency>
             where TDependency : class
         {
-            return new DIAbstractFactory<TDependency,T>(input);   
+            return new DIAbstractFactory<TDependency, T>(input);
         }
 
     }
