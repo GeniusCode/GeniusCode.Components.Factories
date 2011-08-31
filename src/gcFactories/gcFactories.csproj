@@ -45,6 +45,7 @@
     <Compile Include="Factories\DepedencyInjection\IDependant.cs" />
     <Compile Include="Factories\DepedencyInjection\IDIAbstractFactory.cs" />
     <Compile Include="Factories\DepedencyInjection\IPeerChainDependant.cs" />
+    <Compile Include="Factories\DepedencyInjection\PeerBase.cs" />
     <Compile Include="FactoryExtensions.cs" />
     <Compile Include="IAbstractFactory.cs" />
     <Compile Include="IAbstractFactoryExtensions.cs" />

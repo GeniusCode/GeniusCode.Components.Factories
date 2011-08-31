@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
-using System.Linq;
 using GeniusCode.Components.Factories.DepedencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -22,35 +20,25 @@ namespace GeniusCode.Components.Factories.Tests
         }
 
 
-        public class Person : IPeerChainDependant<Person,Train>
+        public class Person : PeerBase<Person, Train>
         {
-            #region Implementation of IDependant<Train>
-
-            public Train Dependency { get; private set; }
-
-            public bool TrySetDependency(Train args)
+            public Train Dependency
             {
-                Dependency = args;
-                return true;
+                get
+                {
+                    return (this as IDependant<Train>).Dependency;
+                }
             }
-
-            #endregion
-
-            #region Implementation of IPeerChainDependant<Person,Train>
-
-            IDIAbstractFactory<Train, Person> IPeerChainDependant<Person,Train>.Factory { get; set; }
-
-            #endregion
 
             public Person GetAnotherPerson()
             {
-                return (this as IPeerChainDependant<Person, Train>).Factory.GetInstance<Person>(this);
+                return Factory.GetInstance<Person>(this);
             }
         }
         [TestMethod]
         public void Should_reuse_dependency_in_result_instances()
         {
-            var train = new Train();
+            var train = new DIFactoryTests.Train();
 
             var factories = new List<IFactory<Person>>();
             factories.AddNewDefaultConstructorFactory();
@@ -59,7 +47,7 @@ namespace GeniusCode.Components.Factories.Tests
 
             var p1 = trainStation.GetInstance(train);
             var p2 = trainStation.GetInstance(train);
-            var p3 = trainStation.GetInstance(train); 
+            var p3 = trainStation.GetInstance(train);
             var p4 = trainStation.GetInstance(train);
 
             AssertDependencyInjectionOccurred(p1, p2, p3, p4);
@@ -92,7 +80,7 @@ namespace GeniusCode.Components.Factories.Tests
             var p3 = p2.GetAnotherPerson();
             var p4 = p3.GetAnotherPerson();
 
-            AssertDependencyInjectionOccurred(p1,p2,p3,p4);
+            AssertDependencyInjectionOccurred(p1, p2, p3, p4);
 
         }
     }
