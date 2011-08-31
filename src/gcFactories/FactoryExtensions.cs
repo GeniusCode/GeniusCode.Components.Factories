@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GeniusCode.Components.Factories;
+using GeniusCode.Components.Factories.DepedencyInjection;
 
 namespace GeniusCode.Components
 {
@@ -10,9 +11,16 @@ namespace GeniusCode.Components
             input.Add(new DefaultConstructorFactory<T>());
         }
 
-        public  static AbstractFactory<T> ToAbstractFactory<T>(this IList<IFactory<T>> input) where T: class
+        public  static IAbstractFactory<T> ToAbstractFactory<T>(this IEnumerable<IFactory<T>> input) where T: class
         {
             return new AbstractFactory<T>(input);
+        }
+
+        public static DIAbstractFactory<TDependency,T> ToDIAbstractFactory<T, TDependency>(this IEnumerable<IFactory<T>> input) 
+            where T : class, IDependant<TDependency>
+            where TDependency : class
+        {
+            return new DIAbstractFactory<TDependency,T>(input);   
         }
 
     }

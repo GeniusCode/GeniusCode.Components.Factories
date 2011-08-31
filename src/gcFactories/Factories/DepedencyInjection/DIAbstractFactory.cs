@@ -3,14 +3,27 @@ using System.Collections.Generic;
 
 namespace GeniusCode.Components.Factories.DepedencyInjection
 {
+
     public class DIAbstractFactory<TDependency, T> : AbstractFactory<T>
         where T : class, IDependant<TDependency>
+        where TDependency : class
     {
         public DIAbstractFactory(IEnumerable<IFactory<T>> providers) : base(providers)
         {
         }
 
-        protected TResult GetInstance<TResult>(object args, TDependency dependency)
+        public TResult GetInstance<TResult>(IDependant<TDependency> dependant, object args = null)
+            where TResult : class, T
+        {
+            return GetInstance<TResult>(dependant.Dependency, args);
+        }
+
+        public T GetInstance(TDependency dependency, object args = null)
+        {
+            return GetInstance<T>(dependency, args);
+        }
+
+        public TResult GetInstance<TResult>(TDependency dependency, object args = null)
             where TResult : class, T
         {
             var output = GetInstance<TResult>(args);

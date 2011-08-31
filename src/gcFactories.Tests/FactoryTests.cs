@@ -16,9 +16,9 @@ namespace GeniusCode.Components.Factories.Tests
             var factories = new List<IFactory<Person>>();
             factories.AddNewDefaultConstructorFactory();
 
-            var af = new AbstractFactory<Person>(factories);
+            var af = factories.ToAbstractFactory();
 
-            var person = af.GetInstance();
+            var person = af.GetInstance(null);
 
             Assert.IsNotNull(person);
         }
