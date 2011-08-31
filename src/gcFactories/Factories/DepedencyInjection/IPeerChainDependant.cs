@@ -6,4 +6,10 @@ namespace GeniusCode.Components.Factories.DepedencyInjection
     {
         IDIAbstractFactory<TDependency, TRoot> Factory { get; set; }
     }
+
+
+    public interface IPeerChainDependant<TDepedency> : IPeerChainDependant<IDependant<TDepedency>, TDepedency>
+     where TDepedency : class
+    {
+    }
 }
