@@ -1,9 +1,9 @@
 namespace GeniusCode.Components.Factories.DepedencyInjection
 {
-    public interface IPeerChainDependant<T, TDependency> : IDependant<TDependency> 
+    public interface IPeerChainDependant<TRoot, TDependency> : IDependant<TDependency>
         where TDependency : class
-        where T: class, IDependant<TDependency>
+        where TRoot : class, IDependant<TDependency>
     {
-        IDIAbstractFactory<TDependency, T> Factory { get; set; }
+        IDIAbstractFactory<TDependency, TRoot> Factory { get; set; }
     }
 }
