@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace GeniusCode.Factory.ProviderModel.Support
+namespace GeniusCode.Components.Factories.Support
 {
     /// <summary>
     /// Represents a source for a value or object instance of a particular type.
