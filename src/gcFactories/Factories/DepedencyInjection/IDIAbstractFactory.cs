@@ -1,8 +1,8 @@
 namespace GeniusCode.Components.Factories.DepedencyInjection
 {
-    public interface IDIAbstractFactory<TDependency, in T> where TDependency : class where T : class, IDependant<TDependency>
+    public interface IDIAbstractFactory<in TDependency, in T> where TDependency : class where T : class, IDependant<TDependency>
     {
-        TResult GetInstance<TResult>(IDependant<TDependency> dependant, object args = null)
+        TResult GetInstance<TResult>(TDependency dependancy, object args = null)
             where TResult : class, T;
     }
 }

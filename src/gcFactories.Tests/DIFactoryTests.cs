@@ -32,7 +32,7 @@ namespace GeniusCode.Components.Factories.Tests
 
             public Person GetAnotherPerson()
             {
-                return Factory.GetInstance<Person>(this);
+                return Factory.GetInstance<Person>(Dependency);
             }
         }
         [TestMethod]

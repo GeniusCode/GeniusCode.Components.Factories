@@ -1,5 +1,4 @@
 using GeniusCode.Components.Factories.Support;
-using GeniusCode.Factory.ProviderModel.Support;
 
 namespace GeniusCode.Components.Factories
 {
