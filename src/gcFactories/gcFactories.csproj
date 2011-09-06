@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\DepedencyInjection\DependantBase.cs" />
+    <Compile Include="DIAbstractFactoryExtensions.cs" />
     <Compile Include="Factories\DepedencyInjection\DIAbstractFactory.cs" />
     <Compile Include="Factories\DepedencyInjection\IDependant.cs" />
     <Compile Include="Factories\DepedencyInjection\IDIAbstractFactory.cs" />

@@ -44,11 +44,6 @@ namespace GeniusCode.Components
             return GetInstance<TResult>(args);
         }
 
-        TResult IAbstractFactory<T>.GetInstanceTypedByArgs<TResult, TArgs>(TArgs args)
-        {
-            var output = GetInstance<TResult>(args);
-            return output;
-        }
 
         #endregion
 
@@ -56,7 +51,7 @@ namespace GeniusCode.Components
 
         private List<IFactory<T>> CreateFactoryList(IEnumerable<IFactory<T>> providers)
         {
-            List<IFactory<T>> sources = (providers ?? new List<IFactory<T>>()).ToList();
+            var sources = (providers ?? new List<IFactory<T>>()).ToList();
             AssembleFactoryList(sources);
             return sources;
         }

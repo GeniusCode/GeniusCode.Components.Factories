@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GeniusCode.Components.Factories.Tests
 {
     [TestClass]
-    public class AbstractFactoryCreateArgsTest
+    public class AbstractFactoryAcquiredArgsTest
     {
 
         public class EntityBase
@@ -22,11 +20,11 @@ namespace GeniusCode.Components.Factories.Tests
 
 
 
-        public class AcquiredPersonArgs : IAcquiredArgs<Person>
+        public class AcquiredPersonArgsToSetName : IAcquiredArgs<Person>
         {
             public string Name { get; set; }
 
-            public AcquiredPersonArgs(string name)
+            public AcquiredPersonArgsToSetName(string name)
             {
                 Name = name;
             }
@@ -42,15 +40,16 @@ namespace GeniusCode.Components.Factories.Tests
         }
 
         [TestMethod]
-        public void Should_fire_delegate_contained_on_args_class()
+        public void Should_fire_delegate_contained_on_acquired_args_class()
         {
-            var args = new AcquiredPersonArgs("John");
+            var args = new AcquiredPersonArgsToSetName("John");
             var factory = GetEntityBaseFactory();
-            Person output = factory.GetInstanceTypedByArgs<Person,AcquiredPersonArgs>(args);
+            Person output;
+            factory.GetInstanceUsingAcquiredArgs(args, out output);
             Assert.AreEqual("John", output.Name);
         }
 
-        private IAbstractFactory<EntityBase> GetEntityBaseFactory()
+        private static IAbstractFactory<EntityBase> GetEntityBaseFactory()
         {
             var factories = new List<IFactory<EntityBase>>();
             factories.AddNewDefaultConstructorFactory();

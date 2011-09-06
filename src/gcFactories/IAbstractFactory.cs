@@ -10,8 +10,5 @@ namespace GeniusCode.Components
         TResult GetInstance<TResult>(object args)
             where TResult : class, T;
 
-        TResult GetInstanceTypedByArgs<TResult, TArgs>(TArgs args) 
-            where TResult: class,T 
-            where TArgs : IAcquiredArgs<TResult>;
     }
 }

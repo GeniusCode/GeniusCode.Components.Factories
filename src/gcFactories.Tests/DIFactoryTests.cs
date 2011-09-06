@@ -49,7 +49,6 @@ namespace GeniusCode.Components.Factories.Tests
             var p2 = trainStation.GetInstance(train);
             var p3 = trainStation.GetInstance(train);
             var p4 = trainStation.GetInstance(train);
-
             AssertDependencyInjectionOccurred(p1, p2, p3, p4);
         }
 

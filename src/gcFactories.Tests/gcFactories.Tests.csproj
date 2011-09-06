@@ -49,7 +49,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractFactoryCreateArgsTest.cs" />
+    <Compile Include="AbstractFactoryAcquiredArgsTest.cs" />
     <Compile Include="DIFactoryTests.cs" />
     <Compile Include="MefFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
