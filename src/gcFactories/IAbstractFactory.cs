@@ -1,6 +1,7 @@
 namespace GeniusCode.Components
 {
-    
+
+
 
     public interface IAbstractFactory<T>
         where T : class
