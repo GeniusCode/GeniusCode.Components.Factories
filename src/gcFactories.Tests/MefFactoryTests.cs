@@ -95,16 +95,16 @@ namespace GeniusCode.Components.Factories.Tests
             Assert.AreEqual(typeof(American), a1.GetType());
         }
 
-        private IAbstractFactory<American> GetMefAbstractFactoryWithSelector()
+        private IAbstractFactory<IPerson> GetMefAbstractFactoryWithSelector()
         {
             var assemblyCatalog = new AssemblyCatalog(GetType().Assembly);
             var container = new CompositionContainer(assemblyCatalog);
 
             Assert.AreEqual(3, container.GetExports<IPerson>().Count());
 
-            var list = new List<IFactory<American>>();
+            var list = new List<IFactory<IPerson>>();
 
-            list.AddMefLocatorProvider<American, IPerson, ICountryMetadata>(container, false,
+            list.AddMefLocatorProvider<IPerson, IPerson, ICountryMetadata>(container, false,
                                                                             (a, lazies) =>
                                                                             lazies.OrderBy(l => l.Metadata.Rank).First());
             var af = list.ToAbstractFactory();
