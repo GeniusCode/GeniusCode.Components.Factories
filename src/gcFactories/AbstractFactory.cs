@@ -44,13 +44,14 @@ namespace GeniusCode.Components
             return GetInstance<TResult>(args);
         }
 
+
         #endregion
 
         #region Helper Methods
 
         private List<IFactory<T>> CreateFactoryList(IEnumerable<IFactory<T>> providers)
         {
-            List<IFactory<T>> sources = (providers ?? new List<IFactory<T>>()).ToList();
+            var sources = (providers ?? new List<IFactory<T>>()).ToList();
             AssembleFactoryList(sources);
             return sources;
         }
@@ -59,12 +60,12 @@ namespace GeniusCode.Components
                                                                                     bool autoCache = true)
             where TResult : class, T
         {
-            IEnumerable<IFactoryOutput<T, TResult>> q = from t in Factories
-                                                        let result = t.GetInstance<TResult>(args)
-                                                        where result.ResultSuccessful
-                                                        select result;
+            var q = from t in Factories
+                    let result = t.GetInstance<TResult>(args)
+                    where result.ResultSuccessful
+                    select result;
 
-            IFactoryOutput<T, TResult> queryResult = q.FirstOrDefault();
+            var queryResult = q.FirstOrDefault();
 
             if (queryResult != null)
             {
@@ -73,7 +74,7 @@ namespace GeniusCode.Components
 
                 return queryResult;
             }
-            return FactoryOutput<T, TResult>.NewFailureInstance();
+            return FactoryOutput<T, TResult>.NewFailureInstance(args);
         }
 
 
@@ -127,18 +128,31 @@ namespace GeniusCode.Components
         }
 
 
+
         protected TResult GetInstance<TResult>(object args) where TResult : class, T
         {
             TResult result;
-            IFactoryOutput<T, TResult> acquireResult = TryAcquireFromEnumerableDerived(out result, args);
+            var acquireResult = TryAcquireFromEnumerableDerived(out result, args);
 
             if (acquireResult.ResultSuccessful)
             {
+                TryInvokeArgsDelegate(args, acquireResult);
                 OnGotInstance(acquireResult);
                 return result;
             }
 
             throw new Exception("Value was not acquired");
+        }
+
+        private static void TryInvokeArgsDelegate<TResult>(object args, IAcquireResult<TResult> acquireResult) where TResult : class, T
+        {
+            var args2 = args as IAcquiredArgs<TResult>;
+            if (args2 == null) return;
+
+            var d = args2.GetOnAcquiredAction();
+
+            if (d != null)
+                d.Invoke(acquireResult.Result);
         }
 
         #endregion

@@ -28,7 +28,7 @@ namespace GeniusCode.Components
 
         #region Overrides of FactoryBase<T,TArgs>
 
-        protected override bool TryBuildWithStrongArgs<TResult>(out bool wasCached, TArgs args, out TResult result)
+        protected override bool TryGetInstanceWithStrongArgs<TResult>(out bool wasCached, TArgs args, out TResult result)
         {
             wasCached = false;
             result = _logic.GetExportedValue<TResult, TArgs>(args, Predicate, Selector);
@@ -56,7 +56,7 @@ namespace GeniusCode.Components
 
         #region Overrides of FactoryBase<T>
 
-        protected override bool TryBuild<TResult>(out bool wasCached, object args, out TResult result)
+        protected override bool TryGetInstance<TResult>(out bool wasCached, object args, out TResult result)
         {
             wasCached = false;
             result = _logic.GetExportedValue<TResult, object>(args, Predicate, Selector);

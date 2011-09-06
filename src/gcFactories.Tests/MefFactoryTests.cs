@@ -21,6 +21,17 @@ namespace GeniusCode.Components.Factories.Tests
             int Rank { get; }
         }
 
+        public class CountryMetadata : ICountryMetadata
+        {
+            #region Implementation of ICountryMetadata
+
+            public string Country { get; set; }
+
+            public int Rank { get; set; }
+
+            #endregion
+        }
+
         [Export(typeof(IPerson))]
         [ExportMetadata("Country", "USA")]
         [ExportMetadata("Rank", 1)]
@@ -49,10 +60,12 @@ namespace GeniusCode.Components.Factories.Tests
         public void ShouldGetSameInstance()
         {
 
-            IAbstractFactory<American> af = GetSimpleMefAbstractFactory("USA", true);
+            var af = GetSimpleMefAbstractFactory(true);
 
-            var a1 = af.GetInstance(null);
-            var a2 = af.GetInstance(null);
+            var md = new CountryMetadata { Country = "USA" };
+
+            var a1 = af.GetInstance(md);
+            var a2 = af.GetInstance(md);
 
             Assert.AreSame(a1, a2);
         }
@@ -61,24 +74,27 @@ namespace GeniusCode.Components.Factories.Tests
         public void ShouldGetUniqueInstance()
         {
 
-            var af = GetSimpleMefAbstractFactory("USA", false);
+            var af = GetSimpleMefAbstractFactory(false);
 
-            var a1 = af.GetInstance(null);
-            var a2 = af.GetInstance(null);
+            var md = new CountryMetadata {Country = "USA"};
+
+            var a1 = af.GetInstance(md);
+            var a2 = af.GetInstance(md);
 
             Assert.AreNotSame(a1, a2);
         }
 
 
 
-        private IAbstractFactory<American> GetSimpleMefAbstractFactory(string countryName, bool reuseInstances)
+        private IAbstractFactory<IPerson> GetSimpleMefAbstractFactory(bool reuseInstances)
         {
             var assemblyCatalog = new AssemblyCatalog(GetType().Assembly);
             var container = new CompositionContainer(assemblyCatalog);
 
-            var list = new List<IFactory<American>>();
+            var list = new List<IFactory<IPerson>>();
 
-            list.AddMefLocatorProvider<American, IPerson, ICountryMetadata>(container, reuseInstances, null, (a, m) => m.Metadata.Country == countryName);
+            list.AddMefLocatorProvider<IPerson, IPerson, ICountryMetadata, ICountryMetadata>(container, reuseInstances, null,
+                (a, m) => m.Metadata.Country == a.Country);
             var af = list.ToAbstractFactory();
             return af;
         }
@@ -92,21 +108,21 @@ namespace GeniusCode.Components.Factories.Tests
             var a1 = hi.GetInstance(null);
 
             Assert.IsNotNull(a1);
-            Assert.AreEqual(typeof(American), a1.GetType());
+            Assert.AreEqual(typeof(Mexican), a1.GetType());
         }
 
-        private IAbstractFactory<American> GetMefAbstractFactoryWithSelector()
+        private IAbstractFactory<IPerson> GetMefAbstractFactoryWithSelector()
         {
             var assemblyCatalog = new AssemblyCatalog(GetType().Assembly);
             var container = new CompositionContainer(assemblyCatalog);
 
             Assert.AreEqual(3, container.GetExports<IPerson>().Count());
 
-            var list = new List<IFactory<American>>();
+            var list = new List<IFactory<IPerson>>();
 
-            list.AddMefLocatorProvider<American, IPerson, ICountryMetadata>(container, false,
+            list.AddMefLocatorProvider<IPerson, IPerson, ICountryMetadata>(container, false,
                                                                             (a, lazies) =>
-                                                                            lazies.OrderBy(l => l.Metadata.Rank).First());
+                                                                            lazies.OrderBy(l => l.Metadata.Rank).Last());
             var af = list.ToAbstractFactory();
             return af;
         }

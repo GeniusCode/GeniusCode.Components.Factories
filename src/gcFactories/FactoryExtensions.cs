@@ -27,7 +27,8 @@ namespace GeniusCode.Components
             where T : class, IDependant<TDependency>
             where TDependency : class
         {
-            return new DIAbstractFactory<TDependency, T>(input);
+            var factory = input.ToAbstractFactory();
+            return new DIAbstractFactory<TDependency, T>(factory);
         }
 
     }

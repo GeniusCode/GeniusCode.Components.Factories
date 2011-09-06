@@ -1,5 +1,8 @@
 namespace GeniusCode.Components
 {
+
+
+
     public interface IAbstractFactory<T>
         where T : class
     {
@@ -7,5 +10,6 @@ namespace GeniusCode.Components
 
         TResult GetInstance<TResult>(object args)
             where TResult : class, T;
+
     }
 }

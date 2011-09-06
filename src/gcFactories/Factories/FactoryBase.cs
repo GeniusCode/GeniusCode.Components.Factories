@@ -7,14 +7,14 @@ namespace GeniusCode.Components.Factories
     {
         #region IFactory<T> Members
 
-        public IFactoryOutput<T, R> GetInstance<R>(object args = null) where R : class, T
+        public IFactoryOutput<T, TResult> GetInstance<TResult>(object args = null) where TResult : class, T
         {
-            return GetResult<R>(args);
+            return GetResult<TResult>(args);
         }
 
         #endregion
 
-        protected abstract bool TryBuild<TResult>(out bool wasCached, object args, out TResult result)
+        protected abstract bool TryGetInstance<TResult>(out bool wasCached, object args, out TResult result)
             where TResult : class, T;
 
         internal IFactoryOutput<T, TResult> GetResult<TResult>(object args = null) where TResult : class, T
@@ -22,12 +22,12 @@ namespace GeniusCode.Components.Factories
             bool wasCached;
             TResult output;
 
-            var success = TryBuild(out wasCached, args, out output);
+            var success = TryGetInstance(out wasCached, args, out output);
 
             if (success)
-                return FactoryOutput<T, TResult>.NewSuccessfulInstance(output, wasCached, this);
+                return FactoryOutput<T, TResult>.NewSuccessfulInstance(output, args, wasCached, this);
             
-            return FactoryOutput<T, TResult>.NewFailureInstance(output, this);
+            return FactoryOutput<T, TResult>.NewFailureInstance(output,args, this);
         }
     }
 }

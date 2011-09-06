@@ -11,9 +11,9 @@ namespace GeniusCode.Components
         }
     }
 
-    public class BindableAbstractFactory<T, TArgs> : AbstractFactory<T>
+    public class BindableAbstractFactory<T, TAcquireArgs> : AbstractFactory<T>
         where T : class
-        where TArgs : class, new()
+        where TAcquireArgs : class, new()
     {
         public BindableAbstractFactory(params IFactory<T>[] providers)
             : base(providers)
@@ -25,12 +25,12 @@ namespace GeniusCode.Components
             get { return ReturnValueForSourceRequest(GetArgs()); }
         }
 
-        protected virtual TArgs GetArgs()
+        protected virtual TAcquireArgs GetArgs()
         {
-            return new TArgs();
+            return new TAcquireArgs();
         }
 
-        protected virtual T ReturnValueForSourceRequest(TArgs args)
+        protected virtual T ReturnValueForSourceRequest(TAcquireArgs args)
         {
             return GetInstance<T>(args);
         }

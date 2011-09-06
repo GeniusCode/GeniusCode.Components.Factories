@@ -6,12 +6,14 @@ namespace GeniusCode.Components
         TResult Result { get; }
         bool ConsiderResultCached { get; }
         bool ResultSuccessful { get; }
+     
     }
 
-    public interface IFactoryOutput<T, TResult> : IAcquireResult<TResult>
+    public interface IFactoryOutput<T, out TResult> : IAcquireResult<TResult>
         where T : class
         where TResult : class, T
     {
         IFactory<T> FactoryUsed { get; }
+        object ArgsSupplied { get; }
     }
 }

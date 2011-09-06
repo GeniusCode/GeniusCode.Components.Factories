@@ -5,14 +5,14 @@ namespace GeniusCode.Components.Factories
 {
     public class DefaultConstructorFactory<T> : FactoryBase<T> where T : class
     {
-        protected override bool TryBuild<R>(out bool wasCached, object args, out R result)
+        protected override bool TryGetInstance<TResult>(out bool wasCached, object args, out TResult result)
         {
             result = null;
             wasCached = false;
 
-            if (TypeHasDefaultConstructor(typeof (R)))
+            if (TypeHasDefaultConstructor(typeof (TResult)))
             {
-                result = Activator.CreateInstance<R>();
+                result = Activator.CreateInstance<TResult>();
                 return true;
             }
             return false;

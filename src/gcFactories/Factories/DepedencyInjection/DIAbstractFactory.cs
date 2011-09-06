@@ -3,12 +3,17 @@ using System.Collections.Generic;
 
 namespace GeniusCode.Components.Factories.DepedencyInjection
 {
-    public class DIAbstractFactory<TDependency, T> : AbstractFactory<T>, IDIAbstractFactory<TDependency, T> where T : class, IDependant<TDependency>
+    public class DIAbstractFactory<TDependency, T> : IDIAbstractFactory<TDependency, T> where T : class, IDependant<TDependency>
         where TDependency : class
     {
-        public DIAbstractFactory(IEnumerable<IFactory<T>> providers) : base(providers)
+
+        private readonly IAbstractFactory<T> _factory;
+
+        public DIAbstractFactory(IAbstractFactory<T> factory)
         {
+            _factory = factory;
         }
+
 
         public TResult GetInstance<TResult>(IDependant<TDependency> dependant, object args = null)
             where TResult : class, T
@@ -24,7 +29,7 @@ namespace GeniusCode.Components.Factories.DepedencyInjection
         public TResult GetInstance<TResult>(TDependency dependency, object args = null)
             where TResult : class, T
         {
-            var output = GetInstance<TResult>(args);
+            var output = _factory.GetInstance<TResult>(args);
             var wasSuccessful = output.TrySetDependency(dependency);
 
             TrySetPeerChain(output);

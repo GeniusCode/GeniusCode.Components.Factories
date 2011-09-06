@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\DepedencyInjection\DependantBase.cs" />
+    <Compile Include="DIAbstractFactoryExtensions.cs" />
     <Compile Include="Factories\DepedencyInjection\DIAbstractFactory.cs" />
     <Compile Include="Factories\DepedencyInjection\IDependant.cs" />
     <Compile Include="Factories\DepedencyInjection\IDIAbstractFactory.cs" />
@@ -51,6 +51,7 @@
     <Compile Include="IAbstractFactoryExtensions.cs" />
     <Compile Include="Factories\Support\FactoryOutput.cs" />
     <Compile Include="BindableAbstractFactory.cs" />
+    <Compile Include="IAcquiredArgs.cs" />
     <Compile Include="IAcquireResult.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="Factories\DefaultConstructorFactory.cs" />
