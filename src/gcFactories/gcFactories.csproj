@@ -51,6 +51,7 @@
     <Compile Include="IAbstractFactoryExtensions.cs" />
     <Compile Include="Factories\Support\FactoryOutput.cs" />
     <Compile Include="BindableAbstractFactory.cs" />
+    <Compile Include="IAcquiredArgs.cs" />
     <Compile Include="IAcquireResult.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="Factories\DefaultConstructorFactory.cs" />

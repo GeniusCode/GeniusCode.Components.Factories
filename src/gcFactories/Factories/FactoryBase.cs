@@ -25,9 +25,9 @@ namespace GeniusCode.Components.Factories
             var success = TryBuild(out wasCached, args, out output);
 
             if (success)
-                return FactoryOutput<T, TResult>.NewSuccessfulInstance(output, wasCached, this);
+                return FactoryOutput<T, TResult>.NewSuccessfulInstance(output, args, wasCached, this);
             
-            return FactoryOutput<T, TResult>.NewFailureInstance(output, this);
+            return FactoryOutput<T, TResult>.NewFailureInstance(output,args, this);
         }
     }
 }
